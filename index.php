@@ -14,6 +14,22 @@ class broker
 			error_reporting(E_ALL);
 		}
 
+		$token = __DIR__.'/secret/token.json';
+
+		if(!is_file($token))
+		{
+			self::boboom('Token file not found');
+		}
+
+		if(isset($_REQUEST['token']) && $_REQUEST['token'] == file_get_contents($token))
+		{
+			// it's ok
+		}
+		else
+		{
+			self::boboom('Invalid token');
+		}
+
 		$pem_file = __DIR__.'/secret/mypemfile.pem';
 
 		if(!is_file($pem_file))
@@ -80,8 +96,7 @@ class broker
 	{
 		// get all
 		$allData = $_REQUEST;
-		// remove method
-		unset($allData['method']);
+
 		// send all
 		return isset($allData['xml']) ? $allData['xml'] : $allData;
 	}
