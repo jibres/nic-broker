@@ -48,16 +48,14 @@ class broker
 		// turn on some setting
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
 		// turn off some setting
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($ch, CURLOPT_HEADER, false);
+
 		// timeout setting
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 7);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 7);
 
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, $_data);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 
 		$result = curl_exec($ch);
 		$mycode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -85,7 +83,7 @@ class broker
 		// remove method
 		unset($allData['method']);
 		// send all
-		return $allData;
+		return isset($allData['xml']) ? $allData['xml'] : $allData;
 	}
 
 
