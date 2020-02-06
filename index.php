@@ -14,14 +14,14 @@ class broker
 			error_reporting(E_ALL);
 		}
 
-		$token = __DIR__.'/secret/token.json';
+		$token = __DIR__.'/secret/token';
 
 		if(!is_file($token))
 		{
 			self::boboom('Token file not found');
 		}
 
-		if(isset($_REQUEST['token']) && $_REQUEST['token'] == file_get_contents($token))
+		if(isset($_REQUEST['token']) && $_REQUEST['token'] == trim(file_get_contents($token)))
 		{
 			// it's ok
 		}
