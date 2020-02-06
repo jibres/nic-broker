@@ -14,7 +14,7 @@ class broker
 			error_reporting(E_ALL);
 		}
 
-		$pem_file = __DIR__.'/pem/mypemfile.pem';
+		$pem_file = __DIR__.'/mypemfile.pem';
 
 		if(!is_file($pem_file))
 		{
