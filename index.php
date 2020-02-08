@@ -27,7 +27,7 @@ class broker
 		}
 		else
 		{
-			self::boboom('Invalid token');
+			self::boboom();
 		}
 
 		$pem_file = __DIR__.'/secret/nic.pem';
@@ -87,8 +87,8 @@ class broker
 		}
 		curl_close($ch);
 
-		// show result with jsonBoboom
-		self::jsonBoboom($result);
+		// show result with jsonBoom
+		self::jsonBoom($result, true);
 	}
 
 
@@ -104,11 +104,12 @@ class broker
 
 	public static function boboom($_string = null)
 	{
+		@header("HTTP/1.1 418 I\'m a teapot", true, 418);
 		// change header
 		exit($_string);
 	}
 
-	public static function jsonBoboom($_result = null)
+	public static function jsonBoom($_result = null)
 	{
 		if(is_array($_result))
 		{
@@ -120,7 +121,7 @@ class broker
 			@header("Content-Type: application/json; charset=utf-8");
 		}
 		echo $_result;
-		self::boboom();
+		exit();
 	}
 }
 
