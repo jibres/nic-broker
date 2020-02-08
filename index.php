@@ -14,7 +14,7 @@ class broker
 			error_reporting(E_ALL);
 		}
 
-		$token = __DIR__.'/secret/token';
+		$token = __DIR__.'/secret/token.conf';
 
 		if(!is_file($token))
 		{
@@ -30,7 +30,7 @@ class broker
 			self::boboom('Invalid token');
 		}
 
-		$pem_file = __DIR__.'/secret/mypemfile.pem';
+		$pem_file = __DIR__.'/secret/nic.pem';
 
 		if(!is_file($pem_file))
 		{
