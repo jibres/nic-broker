@@ -4,16 +4,6 @@ class broker
 {
 	public static function run()
 	{
-		// allow to enable debug mode
-		if(isset($_REQUEST['debug_mode']))
-		{
-			ini_set('display_startup_errors', 'On');
-			ini_set('error_reporting'       , 'E_ALL | E_STRICT');
-			ini_set('track_errors'          , 'On');
-			ini_set('display_errors'        , 1);
-			error_reporting(E_ALL);
-		}
-
 		$token = __DIR__.'/secret/token.conf';
 
 		if(!is_file($token))
@@ -78,12 +68,12 @@ class broker
 		// error on result
 		if ($result === false)
 		{
-			self::boboom(curl_error($ch). ':'. curl_errno($ch));
+			self::boboom(curl_error($ch). ':'. curl_errno($ch), true);
 		}
 		// empty result
-		if (empty($result) || is_null($result))
+		if (empty($result) || is_null($result) || !$result)
 		{
-			self::boboom('Empty server response');
+			self::boboom('Empty server response', true);
 		}
 		curl_close($ch);
 
@@ -102,9 +92,16 @@ class broker
 	}
 
 
-	public static function boboom($_string = null)
+	public static function boboom($_string = null, $_nic_error = false)
 	{
-		@header("HTTP/1.1 418 I\'m a teapot", true, 418);
+		if($_nic_error)
+		{
+			@header("HTTP/1.1 504 Gateway Timeout", true, 504);
+		}
+		else
+		{
+			@header("HTTP/1.1 418 I\'m a teapot", true, 418);
+		}
 		// change header
 		exit($_string);
 	}
