@@ -68,8 +68,8 @@ class broker
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		// timeout setting
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 7);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 7);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 
