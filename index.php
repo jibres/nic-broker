@@ -48,7 +48,8 @@ class broker
 		curl_setopt($ch, CURLOPT_SSLCERT, $_pem);
 
 		//The contents of the "User-Agent: "
-		curl_setopt($ch, CURLOPT_USERAGENT, "Jibres");
+		// curl_setopt($ch, CURLOPT_USERAGENT, "Jibres-irnic");
+		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; Jibres irnic/1.2; +https://jibres.com/bot)");
 
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
