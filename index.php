@@ -48,7 +48,7 @@ class broker
 		curl_setopt($ch, CURLOPT_SSLCERT, $_pem);
 
 		//The contents of the "User-Agent: "
-		curl_setopt($ch, CURLOPT_USERAGENT, "IRNIC_EPP_Client_Sample");
+		// curl_setopt($ch, CURLOPT_USERAGENT, "IRNIC_EPP_Client_Sample");
 
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
