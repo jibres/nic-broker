@@ -48,11 +48,12 @@ class broker
 		curl_setopt($ch, CURLOPT_SSLCERT, $_pem);
 
 		//The contents of the "User-Agent: "
-		// curl_setopt($ch, CURLOPT_USERAGENT, "IRNIC_EPP_Client_Sample");
+		curl_setopt($ch, CURLOPT_USERAGENT, "Jibres");
 
 		curl_setopt($ch, CURLOPT_URL, $apiURL);
 		// turn on some setting
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_POST, true);
 		// turn off some setting
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
